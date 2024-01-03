@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Детально об листе задач ({{ todolist.name }})
+{% endblock title %}
+
+{% block content %}
+    <main class="py-6 px-8">
+        <h1 class="mb-6 text-3xl">{{ todolist.name }}</h1>
+        <p class="mb-6">{{ project.description }}</p>
+        
+        <a href="{% url 'add_task' project.id todolist.id %}" class="py-4 px-8 bg-emerald-600 text-white inline-block">Добавить задачу</a>
+        <a href="{% url 'edit_todolist' project.id todolist.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Редактировать</a>
+        <a href="{% url 'delete_todolist' project.id todolist.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Удалить</a>
+
+        <div class="mt-6 grid grid-cols-4 gap-4">
+            {% if tasks_length == 0 %}
+                <h1 class="mt-6 text-3xl">У вас нет задач</h1>
+            {% else %}
+                {% for task in todolist.tasks.all %}
+                    <div class="py-6 px-6 bg-slate-200">
+                        <a href="{% url 'detail_task' todolist.project.id todolist.id task.id %}">
+                            <h2 class="mb-4 text-xl">{{ task.name }}</h2>
+
+                            <p class="text-sm text-slate-600">
+                                {{ task.description }}
+                            </p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </main>
+{% endblock content %}

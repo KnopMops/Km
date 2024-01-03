@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block content %}
+        <main class="py-6 px-8">
+            <div class="max-w-xl mx-auto py-8 bg-slate-800 text-center">
+                <h1 class="text-3xl text-white">Регистрация</h1>
+
+                <form class="mt-6 px-8 space-y-4" method="post" action=".">
+                    {% csrf_token %}
+
+                    <div>
+                        <label class="text-white">Имя</label>
+                        <input name="name" type="text" class="w-full py-4 px-6 bg-slate-500 text-white" />
+                    </div>
+
+                    <div>
+                        <label class="text-white">Почта</label>
+                        <input name="email" type="email" class="w-full py-4 px-6 bg-slate-500 text-white" />
+                    </div>
+
+                    <div>
+                        <label class="text-white">Пароль</label>
+                        <input name="password1" type="password" class="w-full py-4 px-6 bg-slate-500 text-white" />
+                    </div>
+
+                    <div>
+                        <label class="text-white">Повторите пароль</label>
+                        <input name="password2" type="password" class="w-full py-4 px-6 bg-slate-500 text-white" />
+                    </div>
+
+                    <div>
+                        <button type="submit" class="py-4 px-8 mt-6 bg-sky-600 text-white w-full">Зарегистрироваться</button>
+                    </div>
+
+                    <div>
+                        <span class="mt-5 px-1 text-white mt-6">Уже есть аккаунт?</span> <a class="mt-9 font-bold text-white" href="{% url 'login' %}">Войти</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+{% endblock content %}

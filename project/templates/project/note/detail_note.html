@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Детально об заметке ({{ note.name }}) для проекта ({{ project.name }})
+{% endblock title %}
+
+{% block content %}
+    <h1 class="mb-6 text-3xl">{{ project.name }}</h1>
+
+    <a href="{% url 'edit-note' project.id note.id %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Редактировать</a>
+    <a href="{% url 'delete-note' project.id note.id %}" class="py-4 px-8 bg-amber-600 text-white inline-block">Удалить</a>
+
+    <p class="mt-6 mb-6">{{ note.body }}</p>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Проекты
+{% endblock title %}
+
+{% block content %}
+        <main class="py-6 px-8">
+            <h1 class="mb-6 text-3xl">Проекты</h1>
+            <a href="{% url 'add-project' %}" class="py-4 px-8 bg-sky-600 text-white inline-block">Добавить проект</a>
+
+            <div class="mt-6 grid grid-cols-4 gap-4">
+                {% if projects_length == 0 %}
+                    <div class="text-center">
+                        <h1 class="mt-6 text-3xl">У вас нет проектов</h1>
+                    </div>
+                {% else %}
+                    {% for project in projects %}
+                        <a href="{% url 'project-detail' project.id %}">
+                            <div class="py-6 px-6 bg-slate-200">
+                                <h2 class="mb-4 text-xl">{{ project.name }}</h2>
+                                <p class="text-sm text-slate-600">{{ project.description }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </main>
+{% endblock content %}
